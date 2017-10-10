@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { HashRouter, Link, Route } from 'react-router-dom';
+import { HashRouter, Link, Route, Switch } from 'react-router-dom';
 import Songs from './Songs';
 import { AllAlbums } from './AllAlbums';
+import NotFound from './NotFound';
 
 export default class SingleArtists extends Component {
   constructor() {
@@ -25,6 +26,7 @@ export default class SingleArtists extends Component {
       .then(data => {
         this.setState({ artist: data[0], artistAlbums: data[1], artistSongs: data[2] })
       })
+      .catch(error => this.props.history.push("/NotFound"));
   }
 
   //   render() {
@@ -52,9 +54,13 @@ export default class SingleArtists extends Component {
             <li><Link to={`/artists/${artist.id}/songs`}>SONGS</Link></li>
           </ul>
 
+          <Switch>
 
-          <Route exact path="/artists/:artistId/albums" render={() => <AllAlbums albums={this.state.artistAlbums} />} />
-          <Route exact path={`/artists/:artistId/songs`} render={() => <Songs songs={this.state.artistSongs} />} />
+            <Route exact path="/artists/:artistId/albums" render={() => <AllAlbums albums={this.state.artistAlbums} />} />
+            <Route exact path={`/artists/:artistId/songs`} render={() => <Songs songs={this.state.artistSongs} />} />
+
+          </Switch>
+
 
         </div>
       </HashRouter>

@@ -16,7 +16,8 @@ export default class StatefulAlbums extends Component {
       .then(res => res.data)
       .then(albums => {
         this.setState({ albums })
-      });
+      })
+      .catch(error => this.props.history.push("/NotFound"));
   }
 
   render() {

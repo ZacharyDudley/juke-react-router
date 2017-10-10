@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 const Sidebar = () => {
 
@@ -8,10 +8,10 @@ const Sidebar = () => {
       <img src="juke.svg" className="logo" />
       <section>
         <h4 className="menu-item active">
-        <Link to="/albums" >ALBUMS</Link>
+        <NavLink  activeClassName="active" to="/albums" >ALBUMS</NavLink>
         </h4>
         <h4>
-        <Link to="/artists" >ARTISTS</Link>
+        <NavLink  activeClassName="active" to="/artists" >ARTISTS</NavLink>
         </h4>
       </section>
     </sidebar>
